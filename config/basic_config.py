@@ -1,6 +1,6 @@
 #coding=utf-8
 class ConfigInit:
-    url = 'xxxxxxxx'
+    url = 'https://baconapi.lpi-china.com'
     sendaddr_name = 'xxxxxx'
     sendaddr_pswd = 'expfsnlwjyecjddj'
     data_filename = 'data.xls'

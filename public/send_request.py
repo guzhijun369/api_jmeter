@@ -115,7 +115,8 @@ class SendRequest(object):
         rely = data['rely']
         content_type = data['Content-Type']
         if 'mock_data' in data:
-            send_data = eval(send_data)
+            if send_data != '':
+                send_data = eval(send_data)
             r =self.mock_test(method, url, send_data, self.headers, data['mock_data'])
             print('url:{}\r\nmethod:{}\r\nrequest_data:{}\r\nmock返回值 response:{}'.format(url, method, send_data, r))
             if extract != '':
@@ -137,7 +138,6 @@ class SendRequest(object):
                 url = self.replace_all_var(url, global_var_dic)
                 r = self.send_request(method, url=url, data=send_data, header=self.headers, extract=extract)
         # write_res(rownum, json.dumps(r, indent=2, ensure_ascii=False))  # 写入返回值
-
         return r
 
     def mock_test(self, method, url, send_data, header, mock_res_data):

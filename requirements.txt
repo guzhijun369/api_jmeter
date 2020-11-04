@@ -1,0 +1,12 @@
+ddt==1.2.1
+loguru==0.3.2
+redis==3.3.8
+jsonpath==0.82
+xlutils==2.0.0
+Werkzeug==0.14.1
+pymongo==3.9.0
+Faker==2.0.1
+xlrd==1.2.0
+requests==2.18.4
+PyMySQL==0.9.3
+HTMLTestRunner==0.8.0

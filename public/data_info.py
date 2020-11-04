@@ -154,6 +154,7 @@ if  os.path.exists(PATH):  # 如果路径不存在，创建路径
 else:
     data_info = None
 # pprint(data_info)
-# a = get_test_case_data(data_info, 'data','login')
-# #
-# pprint(a)
+if __name__ == '__main__':
+    a = get_test_case_data(data_info, 'data','other')
+    #
+    pprint(a)
