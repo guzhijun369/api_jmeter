@@ -9,7 +9,6 @@ import types
 from unittest import mock
 from config.globalparam import json_path,custom_function_file
 
-
 false = False  # 用于转义send_data中存在的false,true,null，python中没有这种关键字，转成对应的
 true = True
 null = None
@@ -68,6 +67,30 @@ class SendRequest(object):
                 try:
                     del header['Content-Type']
                     re = requests.post(url, data=data, headers=header)
+                except Exception as e:
+                    return e
+            else:
+                re = False
+        elif method == 'put':
+            if header['Content-Type'] == 'application/x-www-form-urlencoded':
+                try:
+                    re = requests.put(url, data=data, headers=header)
+                except Exception as e:
+                    return e
+            elif header['Content-Type'] == 'text/xml':
+                try:
+                    re = requests.put(url, json=data, headers=header)
+                except Exception as e:
+                    return e
+            elif header['Content-Type'] == 'application/json':
+                try:
+                    re = requests.put(url, json=data, headers=header)
+                except Exception as e:
+                    return e
+            elif header['Content-Type'] == 'multipart/form-data':
+                try:
+                    del header['Content-Type']
+                    re = requests.put(url, data=data, headers=header)
                 except Exception as e:
                     return e
             else:

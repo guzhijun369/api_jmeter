@@ -30,5 +30,3 @@ if not os.path.exists(json_path):  # 如果路径不存在，创建路径
     os.makedirs(json_path)
 #自定义函数文件
 custom_function_file = "public.custom_function"
-if not os.path.exists(custom_function_file):  # 如果路径不存在，创建路径
-    os.makedirs(custom_function_file)
