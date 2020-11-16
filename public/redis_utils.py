@@ -9,6 +9,7 @@ class MyRedis:
         try:
             self.r = redis.StrictRedis(host=ConfigInit.redis_host, port=ConfigInit.redis_port,
                                     db=ConfigInit.redis_db, password=ConfigInit.redis_pw, decode_responses=True)
+            logger.info('连接redis{}:{}/{}'.format(ConfigInit.redis_host,ConfigInit.redis_port,ConfigInit.redis_db))
         except Exception as e:
             logger.error('redis连接失败，错误信息%s' %e)
 

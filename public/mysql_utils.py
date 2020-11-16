@@ -5,12 +5,14 @@ from loguru import logger
 
 class HandleMySql:
     """数据库处理类"""
-
     def __init__(self):
-        self.conn = pymysql.connect(host=ConfigInit.mysql_host, port=ConfigInit.mysql_port, user=ConfigInit.mysql_user,
-                                    password=ConfigInit.mysql_pw, db=ConfigInit.mysql_db, charset='utf8mb4',
-                                    cursorclass=pymysql.cursors.DictCursor)
-        logger.info('连接数据库{}:{}/{}'.format(ConfigInit.mysql_host,ConfigInit.mysql_port,ConfigInit.mysql_db))
+        try:
+            self.conn = pymysql.connect(host=ConfigInit.mysql_host, port=ConfigInit.mysql_port, user=ConfigInit.mysql_user,
+                                        password=ConfigInit.mysql_pw, db=ConfigInit.mysql_db, charset='utf8mb4',
+                                        cursorclass=pymysql.cursors.DictCursor)
+        except Exception as e:
+            logger.error('mysql连接失败，错误信息%s' %e)
+        logger.info('连接mysql数据库{}:{}/{}'.format(ConfigInit.mysql_host,ConfigInit.mysql_port,ConfigInit.mysql_db))
         self.cursor = self.conn.cursor()
 
     def get_value(self, sql, args=None, is_more=False):

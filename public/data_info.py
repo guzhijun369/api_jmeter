@@ -1,6 +1,7 @@
 # coding=utf-8
 import xlrd
 import os
+import json
 from config import globalparam
 from xlutils.copy import copy
 from loguru import logger
@@ -147,7 +148,27 @@ def data_exact_search(datas, key):
         logger.debug('data方法：精确查找提取-查找失败:%s,%s' % (type(res), res))
     return res
 
-
+def edit_jsonfile(path=globalparam.json_path, type='get', k=None, v=None):
+    """
+    操作全局变量json文件方法
+    :param type 操作类型 get：获取变量值，set: 修改变量值
+    :param k 要操作的Key
+    :param v 要设置的值，当type=set,v=None时，表示删除k
+    """
+    with open(path, 'r', encoding='utf-8') as rf:
+        load_dict = json.load(rf)
+    if type == 'get':
+            return load_dict[k]
+    if type == 'set':
+        if v:
+            load_dict[k] = v
+        else:
+            try:
+                del load_dict[k]
+            except:
+                logger.error('删除的key:{}不存在'.format(k))
+        with open(path, 'w', encoding='utf-8') as wf:
+            json.dump(load_dict, wf, indent=4, ensure_ascii=False)
 
 if  os.path.exists(PATH):  # 如果路径不存在，创建路径
     data_info = get_excel_dict(PATH)
@@ -155,6 +176,8 @@ else:
     data_info = None
 # pprint(data_info)
 if __name__ == '__main__':
-    a = get_test_case_data(data_info, 'data','other')
-    #
-    pprint(a)
+    # a = get_test_case_data(data_info, 'data','other')
+    # #
+    # pprint(a)
+    print(edit_jsonfile(k='curriculum_id'))
+    edit_jsonfile(type='set',k='userid', v='66848')
