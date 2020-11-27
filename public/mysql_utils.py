@@ -36,10 +36,9 @@ class HandleMySql:
         self.conn.close()
         logger.info('关闭数据库连接')
 
-handle_sql = HandleMySql()
-# if __name__ == '__main__':
-#     handle_sql = HandleMySql()
-#     sql = "select * from member where MobilePhone = %s;"
-#     single_data = handle_sql.get_value(sql, "15828641020")
-#     print(single_data)
+if __name__ == '__main__':
+    handle_sql = HandleMySql()
+    sql = "select * from project where projec = %s;"
+    single_data = handle_sql.get_value(sql, 1)
+    print(single_data)
 

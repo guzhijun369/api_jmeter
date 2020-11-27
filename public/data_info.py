@@ -12,10 +12,10 @@ PATH = globalparam.data_path
 
 # print(PATH)
 def get_excel_dict(path, index=0):
-    paralList=[]
     paraldict={}
     dirs = os.listdir(path)
     for filename in dirs:
+        paralList = []
         workbook=xlrd.open_workbook(os.path.join(globalparam.data_path,filename))  # 打开文件
         sheet=workbook.sheets()[index]  # sheet索引从0开始
         firstRowDataList=sheet.row_values(0)#第一行数据

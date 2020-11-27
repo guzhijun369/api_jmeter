@@ -7,13 +7,13 @@ class ConfigInit:
     mongo_ip_port = 'ip'
     mongo_user = 'root'
     mongo_pw = "pw"
-    mysql_host = 'ip'
+    mysql_host = 'xxxxx'
     mysql_port = 3306
     mysql_user = 'root'
-    mysql_pw = 'q5310543'
+    mysql_pw = 'xxxxx'
     mysql_db = 'test'
-    redis_host = 'ip'
+    redis_host = 'xxxxxx'
     redis_port = 6379
     redis_db = 0
-    redis_pw = 'q5310543'
+    redis_pw = 'xxxx'
     #测试测试
