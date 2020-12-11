@@ -13,7 +13,7 @@ logger.add(path, level=globalparam.log_level, enqueue=True)  # 日志初始化
 def run(method, test=None):
     if method == 'all':
         test_dir = './testcase'
-        suite = unittest.defaultTestLoader.discover(start_dir=test_dir, pattern='test_3*.py')
+        suite = unittest.defaultTestLoader.discover(start_dir=test_dir, pattern='test_*.py')
 
         now = time.strftime('%Y-%m-%d_%H_%M_%S')
         reportname = os.path.join(globalparam.report_path, 'TestResult' + now + '.html')

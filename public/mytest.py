@@ -3,7 +3,6 @@ import unittest
 from loguru import logger
 from public.send_request import SendRequest
 from config.basic_config import ConfigInit
-from public.mysql_utils import handle_sql
 
 class MyTest(unittest.TestCase):
     """
