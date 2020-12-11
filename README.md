@@ -27,6 +27,8 @@ public/  各种方法封装
     mytest        unittest基类，封装一些每个用例前后都要进行的操作,可以写多个基类，区分场景继承
         
     send_request    发送请求方法封装
+	
+	send_report    部署linux服务器后，发送报告到钉钉
         
     sendmail      发送测试报告方法，由于国内邮件服务经常被封，采用了国外的mailgun  smtp
     
