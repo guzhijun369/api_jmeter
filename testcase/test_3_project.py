@@ -1,5 +1,6 @@
 # coding=utf-8
 import json
+import unittest
 from public import mytest
 from ddt import ddt, data
 from public.data_info import get_test_case_data, data_info
@@ -71,3 +72,37 @@ class Project(mytest.MyTokenTest):
     @data(*get_test_case_data(data_info, file, 'application_login'))
     def test_007_application_login(self, data):
         r = self.send_requests.send_request_all(data)
+
+
+def mySuitePrefixAdd(MyClass,cases):
+    '''
+    根据前缀添加测试用例-可用于ddt数据用例
+    :param MyClass:
+    :param cases:
+    :return:
+    '''
+    test_list = []
+    testdict = MyClass.__dict__
+    if isinstance(cases,str):
+        cases = [cases]
+    for case in cases:
+        tmp_cases = filter(lambda cs:cs.startswith(case) and callable(getattr(MyClass,cs)),testdict)
+        for tmp_case in tmp_cases:
+            test_list.append(MyClass(tmp_case))
+    suite = unittest.TestSuite()
+    suite.addTests(test_list)
+    return suite
+
+
+if __name__ == "__main__":
+
+    runner = unittest.TextTestRunner()
+    runner.run(mySuitePrefixAdd(Project,"test_007_application_login"))
+
+
+
+# if __name__ == '__main__':
+#     suit = unittest.TestSuite()
+#     suit.addTest(Project("test_007_application_login_1_application登陆"))  # 把这个类中需要执行的测试用例加进去，有多条再加即可
+#     runner = unittest.TextTestRunner()
+#     runner.run(suit)

@@ -6,6 +6,7 @@ import os
 from loguru import logger
 from config import globalparam
 from public.send_report import SslSendReport
+from testcase import test_3_project
 
 path = os.path.join(globalparam.log_path,'test_{}.log'.format(time.strftime('%Y-%m-%d')))
 
@@ -41,5 +42,5 @@ def run(method, test=None):
         runner.run(suit)
 
 if __name__ == '__main__':
-    # run('one', test_3_project.Project("test_6_enable_project"))
+    # run('one', test_3_project.Project("test_007_application_login"))
     run('all')
